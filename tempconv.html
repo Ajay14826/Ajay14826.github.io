@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Converter</title>
+    <style type="text/css">
+        body {
+        font-family: Arial, sans-serif;
+        }
+        nav {
+        background-color: #333;
+        color: white;
+        padding: 10px;
+        }
+        nav a {
+        color: white;
+        margin-right: 10px;
+        text-decoration: none;
+        }
+        form {
+        margin-top: 20px;
+        }
+        </style>
+        
+</head>
+<body>
+    <h2>Temperature Converter</h2>
+    <label for="temp">Enter temperature:</label>
+    <input type="number" id="temp" placeholder="Temperature">
+
+    <label for="conversion">Choose conversion:</label>
+    <select id="conversion">
+        <option value="CtoF">Celsius to Fahrenheit</option>
+        <option value="FtoC">Fahrenheit to Celsius</option>
+        <option value="CtoK">Celsius to Kelvin</option>
+        <option value="KtoC">Kelvin to Celsius</option>
+        <option value="FtoK">Fahrenheit to Kelvin</option>
+        <option value="KtoF">Kelvin to Fahrenheit</option>
+    </select>
+
+    <button onclick="convertTemperature()">Convert</button>
+
+    <h3 id="result"></h3>
+
+    <script>
+        function convertTemperature() {
+            const temp = parseFloat(document.getElementById('temp').value);
+            const conversion = document.getElementById('conversion').value;
+            let result;
+
+            switch (conversion) {
+                case 'CtoF':
+                    result = (temp * 9/5) + 32;
+                    break;
+                case 'FtoC':
+                    result = (temp - 32) * 5/9;
+                    break;
+                case 'CtoK':
+                    result = temp + 273.15;
+                    break;
+                case 'KtoC':
+                    result = temp - 273.15;
+                    break;
+                case 'FtoK':
+                    result = (temp - 32) * 5/9 + 273.15;
+                    break;
+                case 'KtoF':
+                    result = (temp - 273.15) * 9/5 + 32;
+                    break;
+                default:
+                    result = "Invalid conversion type";
+            }
+
+            document.getElementById('result').textContent = `Result: ${result}`;
+        }
+    </script>
+</body>
+</html>
